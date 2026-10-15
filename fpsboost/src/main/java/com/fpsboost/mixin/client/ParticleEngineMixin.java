@@ -6,6 +6,7 @@ import net.minecraft.client.Minecraft;
 import net.minecraft.client.particle.Particle;
 import net.minecraft.client.particle.ParticleEngine;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.BuiltInRegistries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.phys.Vec3;
@@ -21,6 +22,11 @@ public abstract class ParticleEngineMixin {
     @Inject(method = "createParticle", at = @At("HEAD"), cancellable = true, require = 0)
     private void fpsboost$limit(ParticleOptions options, double x, double y, double z,
                                 double vx, double vy, double vz, CallbackInfoReturnable<Particle> cir) {
+        // Vanilla's firework code casts this method's result to SparkParticle and calls setTrail() on it
+        // without a null check, so returning null for FIREWORK sparks crashes the game (NullPointerException).
+        // Never drop, block or budget-count them.
+        if (options.getType() == ParticleTypes.FIREWORK) return;
+
         // Blocklist first: blocked particles don't even use up budget.
         Set<ResourceLocation> blocked = ClientConfig.blockedParticles;
         if (!blocked.isEmpty()) {
