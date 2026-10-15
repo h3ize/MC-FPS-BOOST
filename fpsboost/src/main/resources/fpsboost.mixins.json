@@ -1,0 +1,23 @@
+{
+  "required": false,
+  "minVersion": "0.8",
+  "package": "com.fpsboost.mixin",
+  "compatibilityLevel": "JAVA_21",
+  "mixins": [
+    "MobMixin",
+    "LivingEntityMixin"
+  ],
+  "client": [
+    "client.EntityRenderDispatcherMixin",
+    "client.BlockEntityRenderDispatcherMixin",
+    "client.ParticleEngineMixin",
+    "client.ClientLevelMixin",
+    "client.MinecraftMixin",
+    "client.SpriteTickerMixin",
+    "client.SoundEngineMixin",
+    "client.LevelRendererMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 0
+  }
+}

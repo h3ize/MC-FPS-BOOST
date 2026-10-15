@@ -1,0 +1,32 @@
+modLoader="javafml"
+loaderVersion="[4,)"
+license="MIT"
+
+[[mods]]
+modId="fpsboost"
+version="1.0.0"
+displayName="FPS Boost"
+authors="you"
+description='''
+Pure performance mod: entity/block-entity/particle culling, particle budgets,
+animated texture + ambient particle throttling, background FPS limiter,
+far-away mob AI throttling and one-time optimized video settings.
+Does not touch item drops in any way.
+'''
+
+[[mixins]]
+config="fpsboost.mixins.json"
+
+[[dependencies.fpsboost]]
+modId="neoforge"
+type="required"
+versionRange="[21.1,)"
+ordering="NONE"
+side="BOTH"
+
+[[dependencies.fpsboost]]
+modId="minecraft"
+type="required"
+versionRange="[1.21.1,1.22)"
+ordering="NONE"
+side="BOTH"
